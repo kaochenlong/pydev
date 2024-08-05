@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <h1>Developers</h1>
+
+  <ul>
+  {% for resume in resumes %}
+    <li>
+    {{ resume.name }}
+    <a href="{% url 'resumes:show' resume.id %}">{{ resume.email }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}
