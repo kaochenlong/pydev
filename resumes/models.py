@@ -7,3 +7,6 @@ class Resume(models.Model):
     introduce = models.CharField(max_length=200)
     profile = models.TextField()
     online = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"
