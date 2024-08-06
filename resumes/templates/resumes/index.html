@@ -4,7 +4,7 @@
 {% block content %}
 
   <h1>Developers</h1>
-  <a href="">新增</a>
+  <a href="{% url 'resumes:new' %}" class="btn btn-primary">新增</a>
 
   <ul>
   {% for resume in resumes %}
