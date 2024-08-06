@@ -12,7 +12,7 @@ def index(req):
             form.save()
             return redirect("resumes:index")
         else:
-            return HttpResponse("bad!!")
+            return render(req, "resumes/new.html", {"form": form})
 
     resumes = Resume.objects.all()
     return render(req, "resumes/index.html", {"resumes": resumes})

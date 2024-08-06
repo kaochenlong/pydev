@@ -11,15 +11,15 @@
 }
 
 .form-control {
-  & .label {
+  & label {
     @apply block my-1 text-sm font-bold;
   }
 
-  & .input {
+  & input {
     @apply border border-py-blue-dark px-2 text-lg py-1;
   }
 
-  & .textarea {
+  & textarea {
     @apply border border-py-blue-dark px-2 text-lg py-1;
   }
 }

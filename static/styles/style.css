@@ -633,6 +633,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .btn {
   display: inline-block;
   -webkit-user-select: none;
@@ -655,55 +660,55 @@ video {
 }
 
 .form-control {
-  & .label {
+  & label {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
   }
-  & .label {
+  & label {
     display: block;
   }
-  & .label {
+  & label {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
-  & .label {
+  & label {
     font-weight: 700;
   }
-  & .input {
+  & input {
     border-width: 1px;
   }
-  & .input {
+  & input {
     --tw-border-opacity: 1;
     border-color: rgb(41 87 115 / var(--tw-border-opacity));
   }
-  & .input {
+  & input {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
-  & .input {
+  & input {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
   }
-  & .input {
+  & input {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
-  & .textarea {
+  & textarea {
     border-width: 1px;
   }
-  & .textarea {
+  & textarea {
     --tw-border-opacity: 1;
     border-color: rgb(41 87 115 / var(--tw-border-opacity));
   }
-  & .textarea {
+  & textarea {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
-  & .textarea {
+  & textarea {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
   }
-  & .textarea {
+  & textarea {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }

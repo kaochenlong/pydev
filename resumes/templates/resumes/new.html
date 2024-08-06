@@ -5,8 +5,13 @@
   <form action="{% url 'resumes:index' %}" method="POST">
     {% csrf_token %}
 
-    {{ form }}
-
+    {% for field in form %}
+      <div class="form-control">
+        <label class="label">{{ field.label }}</label>
+        {{ field }}
+        <span class="text-red-500">{{ field.errors }}</span>
+      </div>
+    {% endfor%}
 
     <div>
       <button class="btn btn-primary">
