@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>PyDevs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       defer
@@ -11,8 +11,8 @@
     ></script>
   </head>
   <body>
-    <main class="container mx-auto">
-      {% include "shared/navbar.html" %}
+    {% include "shared/navbar.html" %}
+    <main class="container mx-auto my-6">
       {% block content %}{% endblock %}
     </main>
   </body>

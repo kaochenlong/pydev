@@ -1,6 +1,11 @@
-<nav class="bg-blue-200 px-6 py-2">
-  <ul class="flex gap-2">
+<nav class="bg-[#F2D57E] flex justify-between px-6 py-2">
+  <ul class="flex gap-4">
     <li><a href="{% url 'pages:root' %}">首頁</a></li>
-    <li><a href="{% url 'pages:about'%}">關於我們</a></li>
+    <li><a href="{% url 'resumes:index'%}">Developers</a></li>
+    <li><a href="{% url 'pages:about'%}">關於</a></li>
+  </ul>
+  <ul class="flex gap-4">
+    <li>註冊</li>
+    <li>登入</li>
   </ul>
 </nav>
