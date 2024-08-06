@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <h1>更新 Resume</h1>
+  <form action="{% url 'resumes:show' resume.id %}" method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+      <div class="form-control">
+        <label class="label">{{ field.label }}</label>
+        {{ field }}
+        <span class="text-red-500">{{ field.errors }}</span>
+      </div>
+    {% endfor%}
+
+    <div>
+      <button class="btn btn-primary">
+        更新
+      </button>
+    </div>
+
+  </form>
+{% endblock %}

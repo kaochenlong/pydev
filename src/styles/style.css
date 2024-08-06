@@ -23,3 +23,7 @@
     @apply border border-py-blue-dark px-2 text-lg py-1;
   }
 }
+
+.flash {
+  @apply font-bold flex px-6 py-2 justify-between items-center bg-py-yellow-light;
+}
