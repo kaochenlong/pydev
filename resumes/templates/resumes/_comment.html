@@ -4,5 +4,11 @@
   </p>
   <time class="text-xs" datetime="{{ comment.created_at|date:'Y-m-d h:i' }}">
     {{ comment.created_at|date:'h:i d/m/Y' }}
+    <button hx-delete="{% url 'resumes:delete_comment' comment.id %}"
+            hx-confirm="確認刪除？"
+            hx-target="closest li"
+            class="p-1 text-white bg-red-500">
+      刪
+    </button>
   </time>
 </li>

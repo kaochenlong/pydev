@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from .models import Resume
+from .models import Resume, Comment
 from .forms import ResumeForm
 
 
@@ -73,3 +73,10 @@ def comment(req, id):
             "resumes/_comment.html",
             {"comment": comment},
         )
+
+
+def delete_comment(req, id):
+    if req.method == "DELETE":
+        comment = get_object_or_404(Comment, id=id)
+        comment.delete()
+        return HttpResponse("")
