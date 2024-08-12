@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from .models import Resume, Comment
 from .forms import ResumeForm
+from django.utils import timezone
 
 
 def index(req):
