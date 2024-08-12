@@ -18,14 +18,7 @@
     {% if comments %}
       <ul>
         {% for comment in comments %}
-          <li class="flex flex-col">
-            <p>
-              {{ comment.content }}
-            </p>
-            <time class="text-xs" datetime="{{ comment.created_at|date:'Y-m-d h:i' }}">
-              {{ comment.created_at|date:'h:i d/m/Y' }}
-            </time>
-          </li>
+          {% include "resumes/_comment.html" with comment=comment only %}
         {% endfor %}
       </ul>
     {% else %}
