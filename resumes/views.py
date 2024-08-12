@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 from .models import Resume
 from .forms import ResumeForm
 
@@ -66,6 +67,9 @@ def edit(req, id):
 def comment(req, id):
     if req.method == "POST":
         resume = get_object_or_404(Resume, pk=id)
-        resume.comment_set.create(content=req.POST["content"])
-        messages.success(req, "留言成功")
-        return redirect("resumes:show", id=id)
+        comment = resume.comment_set.create(content=req.POST["content"])
+        return render(
+            req,
+            "resumes/_comment.html",
+            {"comment": comment},
+        )
