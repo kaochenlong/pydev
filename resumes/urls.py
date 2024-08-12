@@ -8,4 +8,5 @@ urlpatterns = [
     path("new", views.new, name="new"),
     path("<int:id>", views.show, name="show"),
     path("<int:id>/edit", views.edit, name="edit"),
+    path("<int:id>/comments", views.comment, name="comment"),
 ]

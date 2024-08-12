@@ -11,6 +11,9 @@ python = "^3.12"
 django = "^5.0.7"
 
 
+[tool.poetry.group.dev.dependencies]
+django-extensions = "^3.2.3"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

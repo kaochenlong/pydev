@@ -3,4 +3,33 @@
 {% block content %}
   <h1>{{ resume.email }}</h1>
   <h2>{{ resume.name }}</h2>
+
+  <form method="POST" action="{% url 'resumes:comment' resume.id %}">
+    {% csrf_token %}
+    <section class="flex flex-col w-1/3 gap-2">
+      <textarea name="content" rows="5" class="border-2 border-gray-500"></textarea>
+      <div>
+        <button class="btn btn-primary">新增留言</button>
+      </div>
+    </section>
+  </form>
+
+  <section class="my-4">
+    {% if comments %}
+      <ul>
+        {% for comment in comments %}
+          <li class="flex flex-col">
+            <p>
+              {{ comment.content }}
+            </p>
+            <time class="text-xs" datetime="{{ comment.created_at|date:'Y-m-d h:i' }}">
+              {{ comment.created_at|date:'h:i d/m/Y' }}
+            </time>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div>目前無留言</div>
+    {% endif %}
+  </section>
 {% endblock %}

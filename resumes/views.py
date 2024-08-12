@@ -36,7 +36,16 @@ def show(req, id):
                 {"form": form, "resume": resume},
             )
 
-    return render(req, "resumes/show.html", {"resume": resume})
+    comments = resume.comment_set.order_by("-id")
+
+    return render(
+        req,
+        "resumes/show.html",
+        {
+            "resume": resume,
+            "comments": comments,
+        },
+    )
 
 
 def new(req):
@@ -52,3 +61,11 @@ def edit(req, id):
         "resumes/edit.html",
         {"form": form, "resume": resume},
     )
+
+
+def comment(req, id):
+    if req.method == "POST":
+        resume = get_object_or_404(Resume, pk=id)
+        resume.comment_set.create(content=req.POST["content"])
+        messages.success(req, "留言成功")
+        return redirect("resumes:show", id=id)

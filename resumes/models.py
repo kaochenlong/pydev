@@ -10,3 +10,9 @@ class Resume(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.email})"
+
+
+class Comment(models.Model):
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
