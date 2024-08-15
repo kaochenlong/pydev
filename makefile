@@ -13,3 +13,7 @@ migrate:
 .PHONY: shell
 shell:
 	poetry run python manage.py shell_plus --print-sql
+
+.PHONY: routes
+routes:
+	poetry run python manage.py show_urls
