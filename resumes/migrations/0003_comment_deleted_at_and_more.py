@@ -6,17 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resumes', '0002_comment'),
+        ("resumes", "0002_comment"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='deleted_at',
+            model_name="comment",
+            name="deleted_at",
             field=models.DateTimeField(default=None, null=True),
         ),
         migrations.AddIndex(
-            model_name='comment',
-            index=models.Index(fields=['deleted_at'], name='resumes_com_deleted_5509d9_idx'),
+            model_name="comment",
+            index=models.Index(
+                fields=["deleted_at"], name="resumes_com_deleted_5509d9_idx"
+            ),
         ),
     ]

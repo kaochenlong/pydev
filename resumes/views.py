@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from .models import Resume, Comment
-from .forms import ResumeForm
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+
+from .forms import ResumeForm
+from .models import Comment, Resume
 
 
 def index(req):

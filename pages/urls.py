@@ -1,5 +1,6 @@
-from .views import about, home
 from django.urls import path
+
+from .views import about, home
 
 app_name = "pages"
 
