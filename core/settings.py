@@ -1,9 +1,12 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
+from lib.utils.project import is_dev
 
-load_dotenv()
+if is_dev():
+    from dotenv import load_dotenv
+
+    load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,10 +15,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("APP_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = is_dev()
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -26,10 +28,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_extensions",
     "pages",
     "resumes",
 ]
+
+if is_dev():
+    INSTALLED_APPS += ["django_extensions"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
