@@ -1,11 +1,21 @@
-<nav class="bg-py-yellow flex justify-between px-6 py-2">
+<nav class="flex justify-between px-6 py-2 bg-py-yellow">
   <ul class="flex gap-4">
     <li><a href="{% url 'pages:root' %}">首頁</a></li>
     <li><a href="{% url 'resumes:index'%}">Developers</a></li>
     <li><a href="{% url 'pages:about'%}">關於</a></li>
   </ul>
   <ul class="flex gap-4">
-    <li>註冊</li>
-    <li>登入</li>
+    {% if request.user.is_authenticated %}
+      <li>{{ request.user.username }}</li>
+      <li>
+        <form action="{% url 'users:sign_out' %}" method="POST">
+          {% csrf_token %}
+          <button>登出</button>
+        </form>
+      </li>
+    {% else %}
+      <li><a href="{% url 'users:register' %}">註冊</a></li>
+      <li><a href="{% url 'users:sign_in' %}">登入</a></li>
+    {% endif %}
   </ul>
 </nav>

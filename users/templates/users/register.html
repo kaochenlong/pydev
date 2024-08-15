@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <h1>註冊</h1>
+
+  <form action="{% url 'users:index' %}"
+        autocomplete="off"
+        method="POST">
+    {% csrf_token %}
+
+    <div class="form-control">
+      <label>帳號</label>
+      <input type="text" name="username" />
+    </div>
+
+    <div class="form-control">
+      <label>密碼</label>
+      <input type="password" name="password1" />
+    </div>
+
+    <div class="form-control">
+      <label>密碼確認</label>
+      <input type="password" name="password2" />
+    </div>
+
+    <div class="form-control">
+      <button class="btn btn-primary">
+        註冊
+      </button>
+    </div>
+
+  </form>
+{% endblock %}
