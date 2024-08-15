@@ -17,3 +17,7 @@ shell:
 .PHONY: routes
 routes:
 	poetry run python manage.py show_urls
+
+.PHONY: lint
+lint:
+	poetry run pre-commit run --all-files
