@@ -2,28 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
-  @apply text-lg rounded-sm px-3 py-2 select-none inline-block;
-}
-
-.btn-primary {
-  @apply text-white bg-py-blue-dark;
-}
-
-.form-control {
-  & label {
-    @apply block my-1 text-sm font-bold;
-  }
-
-  & input {
-    @apply border border-py-blue-dark px-2 text-lg py-1;
-  }
-
-  & textarea {
-    @apply border border-py-blue-dark px-2 text-lg py-1;
-  }
-}
-
-.flash {
-  @apply font-bold flex px-6 py-2 justify-between items-center bg-py-yellow-light;
+.heading-1 {
+  @apply text-2xl font-bold my-2;
 }

@@ -1,9 +1,9 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-  <h1 class="heading-1">註冊</h1>
+  <h1 class="heading-1">登入</h1>
 
-  <form action="{% url 'users:index' %}"
+  <form action="{% url 'users:sign_in' %}"
         autocomplete="off"
         method="POST">
     {% csrf_token %}
@@ -15,20 +15,15 @@
 
     <div>
       <label class="label">密碼</label>
-      <input type="password" class="input input-bordered" name="password1" />
-    </div>
-
-    <div>
-      <label class="label">密碼確認</label>
-      <input type="password" class="input input-bordered" name="password2" />
+      <input type="password" class="input input-bordered" name="password" />
     </div>
 
     <button class="mt-4 btn btn-primary">
-      註冊
+      登入
     </button>
+
   </form>
 
   <div class="divider"></div>
-  已經有帳號了？<a class="link" href="{% url 'users:sign_in' %}">登入</a>
-
+  還沒有帳號嗎？現在就<a class="link" href="{% url 'users:register' %}">註冊</a>一個吧！
 {% endblock %}

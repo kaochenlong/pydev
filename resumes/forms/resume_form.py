@@ -9,7 +9,13 @@ class ResumeForm(ModelForm):
         model = Resume
         fields = ["name", "email", "introduce", "profile", "online"]
         widgets = {
-            "profile": Textarea(attrs={"rows": 5}),
+            "name": TextInput(attrs={"class": "input input-bordered"}),
+            "email": EmailInput(attrs={"class": "input input-bordered"}),
+            "introduce": TextInput(attrs={"class": "input input-bordered"}),
+            "profile": Textarea(
+                attrs={"rows": 5, "class": "textarea textarea-bordered"}
+            ),
+            "online": CheckboxInput(attrs={"class": "checkbox checkbox-lg"}),
         }
         labels = {
             "name": "姓名",

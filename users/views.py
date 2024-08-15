@@ -35,7 +35,7 @@ def sign_in(req):
             messages.error(req, "登入失敗")
             return redirect("users:sign_in")
 
-    return render(req, "users/login.html")
+    return render(req, "users/sign_in.html")
 
 
 def sign_out(req):

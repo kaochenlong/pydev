@@ -1,10 +1,11 @@
+{% load svg_icon %}
+
 {% if messages %}
-  <div class="flash">
-    <ul>
-    {% for message in messages %}
-      <li class="{{ message.tags }}">{{ message }}</li>
-    {% endfor %}
-    </ul>
-    <button class="w-6 h-6 bg-yellow-200 text-yellow-600">X</button>
-  </div>
+  {% for message in messages %}
+    <div role="alert" x-data class="alert alert-{{ message.tags }}">
+      {{ message.tags|svg_icon }}
+      <span>{{ message }}</span>
+      <button @click="$root.remove()" class="btn btn-xs btn-circle">X</button>
+    </div>
+  {% endfor %}
 {% endif %}
