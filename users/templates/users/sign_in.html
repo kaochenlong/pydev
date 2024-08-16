@@ -8,6 +8,10 @@
         method="POST">
     {% csrf_token %}
 
+    {% if request.GET.next %}
+      <input type="hidden" name="next" value="{{ request.GET.next }}" />
+    {% endif %}
+
     <div>
       <label class="label">帳號</label>
       <input type="text" class="input input-bordered" name="username" />

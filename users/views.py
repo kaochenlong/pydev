@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 
 def index(req):
@@ -21,8 +22,9 @@ def register(req):
 
 def sign_in(req):
     if req.method == "POST":
-        username = req.POST["username"]
-        password = req.POST["password"]
+        username = req.POST.get("username")
+        password = req.POST.get("password")
+        next_url = req.POST.get("next")
 
         user = authenticate(username=username, password=password)
 
@@ -30,6 +32,9 @@ def sign_in(req):
             login(req, user)
 
             messages.success(req, "登入成功")
+            if next_url:
+                return redirect(next_url)
+
             return redirect("pages:root")
         else:
             messages.error(req, "登入失敗")
