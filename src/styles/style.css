@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .heading-1 {
-  @apply text-2xl font-bold my-2;
+  @apply text-2xl font-bold my-2 select-none;
 }

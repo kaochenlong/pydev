@@ -8,7 +8,7 @@ alert-success alert-warning alert-error w-6 h-6 stroke-current shrink-0
   {% for message in messages %}
     <div role="alert" x-data class="alert alert-{{ message.tags }}">
       {{ message.tags|svg_icon }}
-      {{ message }}
+      <span class="select-none">{{ message }}</span>
       <button @click="$root.remove()" class="btn btn-xs btn-circle">X</button>
     </div>
   {% endfor %}
