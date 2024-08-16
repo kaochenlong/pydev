@@ -19,6 +19,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "alpinejs": "^3.14.1",
+    "braintree-web-drop-in": "^1.43.0",
     "htmx.org": "^1.9.12"
   }
 }

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "pages",
     "resumes",
     "users",
+    "payments",
 ]
 
 if is_dev():

@@ -5,3 +5,4 @@ node_modules/
 static/styles/
 static/scripts/
 .env
+deno.lock
