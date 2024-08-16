@@ -86,6 +86,6 @@ def comment(req, id):
 @login_required
 def delete_comment(req, id):
     if req.method == "DELETE":
-        comment = get_object_or_404(Comment, id=id)
+        comment = get_object_or_404(Comment, id=id, user=req.user)
         comment.delete()
         return HttpResponse("")

@@ -3,11 +3,13 @@
   <time class="text-xs" datetime="{{ comment.created_at|date:'Y-m-d h:i' }}">
     {{ comment.created_at|date:'h:i d/m/Y' }}
   </time>
-  <button hx-delete="{% url 'resumes:delete_comment' comment.id %}"
-          hx-confirm="確認刪除？"
-          hx-target="closest .chat-bubble"
-          hx-swap="outerHTML"
-          class="ml-4 btn btn-xs">
-    刪除
-  </button>
+  {% if comment.user == request.user %}
+    <button hx-delete="{% url 'resumes:delete_comment' comment.id %}"
+            hx-confirm="確認刪除？"
+            hx-target="closest .chat-bubble"
+            hx-swap="outerHTML"
+            class="ml-4 btn btn-xs">
+      刪除
+    </button>
+  {% endif %}
 </div>
