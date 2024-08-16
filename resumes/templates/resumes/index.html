@@ -14,7 +14,9 @@
     <a href="{% url 'resumes:show' resume.id %}">
       {{ resume.name }} {{ resume.email }}
     </a>
-    <a href="{% url 'resumes:edit' resume.id %}" class="btn">編輯</a>
+    {% if resume.user == request.user %}
+      <a href="{% url 'resumes:edit' resume.id %}" class="btn">編輯</a>
+    {% endif %}
     </li>
   {% endfor %}
   </ul>

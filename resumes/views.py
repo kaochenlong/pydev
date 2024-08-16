@@ -12,20 +12,22 @@ def index(req):
         form = ResumeForm(req.POST)
 
         if form.is_valid():
-            form.save()
+            resume = form.save(commit=False)
+            resume.user = req.user
+            resume.save()
+
             messages.success(req, "新增成功")
             return redirect("resumes:index")
         else:
             return render(req, "resumes/new.html", {"form": form})
 
-    resumes = Resume.objects.all()
+    resumes = Resume.objects.order_by("-id")
     return render(req, "resumes/index.html", {"resumes": resumes})
 
 
 def show(req, id):
-    resume = get_object_or_404(Resume, pk=id)
-
     if req.method == "POST":
+        resume = get_object_or_404(Resume, pk=id, user=req.user)
         form = ResumeForm(req.POST, instance=resume)
 
         if form.is_valid():
@@ -39,6 +41,7 @@ def show(req, id):
                 {"form": form, "resume": resume},
             )
 
+    resume = get_object_or_404(Resume, pk=id)
     comments = resume.comment_set.order_by("-id")
 
     return render(
@@ -59,7 +62,7 @@ def new(req):
 
 @login_required
 def edit(req, id):
-    resume = get_object_or_404(Resume, pk=id)
+    resume = get_object_or_404(Resume, pk=id, user=req.user)
     form = ResumeForm(instance=resume)
     return render(
         req,
