@@ -1,14 +1,13 @@
-<li class="flex flex-col">
-  <p>
-    {{ comment.content|linebreaks }}
-  </p>
+<div class="chat-bubble">
+  {{ comment.content|linebreaks }}
   <time class="text-xs" datetime="{{ comment.created_at|date:'Y-m-d h:i' }}">
     {{ comment.created_at|date:'h:i d/m/Y' }}
-    <button hx-delete="{% url 'resumes:delete_comment' comment.id %}"
-            hx-confirm="確認刪除？"
-            hx-target="closest li"
-            class="p-1 text-white bg-red-500">
-      刪
-    </button>
   </time>
-</li>
+  <button hx-delete="{% url 'resumes:delete_comment' comment.id %}"
+          hx-confirm="確認刪除？"
+          hx-target="closest .chat-bubble"
+          hx-swap="outerHTML"
+          class="ml-4 btn btn-xs">
+    刪除
+  </button>
+</div>

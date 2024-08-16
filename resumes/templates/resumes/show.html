@@ -10,7 +10,7 @@
         hx-post="{% url 'resumes:comment' resume.id %}">
     {% csrf_token %}
     <section class="flex flex-col w-1/3 gap-2">
-      <textarea name="content" rows="5" class="border-2 border-gray-500"></textarea>
+      <textarea name="content" rows="5" class="textarea textarea-bordered" placeholder="請填寫留言"></textarea>
       <div>
         <button class="btn btn-primary">新增留言</button>
       </div>
@@ -19,13 +19,13 @@
 
   <section class="my-4">
     {% if comments %}
-      <ul id="comments">
+      <div id="comments" class="gap-2 chat chat-start">
         {% for comment in comments %}
           {% include "resumes/_comment.html" with comment=comment only %}
         {% endfor %}
-      </ul>
+      </div>
     {% else %}
-      <ul id="comments">目前無留言</ul>
+      <div id="comments">目前無留言</div>
     {% endif %}
   </section>
 {% endblock %}
