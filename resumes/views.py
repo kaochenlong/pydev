@@ -1,7 +1,7 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils import timezone
 
 from .forms import ResumeForm
 from .models import Comment, Resume
@@ -51,6 +51,7 @@ def show(req, id):
     )
 
 
+@login_required
 def new(req):
     form = ResumeForm()
     return render(req, "resumes/new.html", {"form": form})
