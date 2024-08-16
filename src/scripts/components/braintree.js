@@ -16,3 +16,5 @@ Alpine.data("braintree_drop_in", () => ({
       })
   },
 }))
+
+Alpine.start()

@@ -10,7 +10,7 @@
   <div class="flex-none">
     <ul class="menu menu-horizontal">
       <li><a href="{% url 'pages:vip' %}">VIP 方案</a></li>
-      {% if request.user.is_authenticated %}
+      {% if user.is_authenticated %}
         <li><a>{{ request.user.username }}</a></li>
         <li>
           <form action="{% url 'users:sign_out' %}" method="POST">
