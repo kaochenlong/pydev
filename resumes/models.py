@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from lib.models.soft_delete import SoftDeleteable, SoftDeleteManager
@@ -9,6 +10,7 @@ class Resume(models.Model):
     introduce = models.CharField(max_length=200)
     profile = models.TextField()
     online = models.BooleanField(default=False)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f"{self.name} ({self.email})"
@@ -19,6 +21,7 @@ class Comment(SoftDeleteable, models.Model):
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     deleted_at = models.DateTimeField(default=None, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     objects = SoftDeleteManager()
 

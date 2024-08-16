@@ -57,6 +57,7 @@ def new(req):
     return render(req, "resumes/new.html", {"form": form})
 
 
+@login_required
 def edit(req, id):
     resume = get_object_or_404(Resume, pk=id)
     form = ResumeForm(instance=resume)
@@ -67,10 +68,14 @@ def edit(req, id):
     )
 
 
+@login_required
 def comment(req, id):
     if req.method == "POST":
         resume = get_object_or_404(Resume, pk=id)
-        comment = resume.comment_set.create(content=req.POST["content"])
+        comment = resume.comment_set.create(
+            content=req.POST["content"],
+            user=req.user,
+        )
         return render(
             req,
             "resumes/_comment.html",
@@ -78,6 +83,7 @@ def comment(req, id):
         )
 
 
+@login_required
 def delete_comment(req, id):
     if req.method == "DELETE":
         comment = get_object_or_404(Comment, id=id)
