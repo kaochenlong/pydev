@@ -11,9 +11,13 @@ class Resume(models.Model):
     profile = models.TextField()
     online = models.BooleanField(default=False)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    bookmark = models.ManyToManyField(User, related_name="bookmarks")
 
     def __str__(self):
         return f"{self.name} ({self.email})"
+
+    def bookmarked_by(self, user) -> bool:
+        return self.bookmark.filter(id=user.id).exists()
 
 
 class Comment(SoftDeleteable, models.Model):

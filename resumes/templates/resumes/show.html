@@ -1,7 +1,10 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-  <h1>{{ resume.email }}</h1>
+  <h1>
+    {{ resume.email }}
+    {% include "resumes/_bookmark.html" with resume=resume bookmarked=bookmarked only %}
+  </h1>
   <h2>{{ resume.name }}</h2>
 
   <form method="POST"

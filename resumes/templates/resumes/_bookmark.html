@@ -1,0 +1,7 @@
+<button class="btn btn-xs" hx-swap="outerHTML" hx-post="{% url 'resumes:bookmark' resume.id %}">
+  {% if bookmarked %}
+    <i class="fa-solid fa-bookmark"></i>
+  {% else %}
+    <i class="fa-regular fa-bookmark"></i>
+  {% endif %}
+</button>

@@ -38,7 +38,11 @@ def show(req, id):
             return render(
                 req,
                 "resumes/edit.html",
-                {"form": form, "resume": resume},
+                {
+                    "form": form,
+                    "resume": resume,
+                    "bookmarked": resume.bookmarked_by(req.user),
+                },
             )
 
     resume = get_object_or_404(Resume, pk=id)
@@ -50,6 +54,7 @@ def show(req, id):
         {
             "resume": resume,
             "comments": comments,
+            "bookmarked": resume.bookmarked_by(req.user),
         },
     )
 
@@ -92,3 +97,30 @@ def delete_comment(req, id):
         comment = get_object_or_404(Comment, id=id, user=req.user)
         comment.delete()
         return HttpResponse("")
+
+
+@login_required
+def bookmark(req, id):
+    if req.method == "POST":
+        resume = get_object_or_404(Resume, pk=id)
+
+        if resume.bookmarked_by(req.user):
+            resume.bookmark.remove(req.user)
+            return render(
+                req,
+                "resumes/_bookmark.html",
+                {
+                    "resume": resume,
+                    "bookmarked": False,
+                },
+            )
+        else:
+            resume.bookmark.add(req.user)
+            return render(
+                req,
+                "resumes/_bookmark.html",
+                {
+                    "resume": resume,
+                    "bookmarked": True,
+                },
+            )
