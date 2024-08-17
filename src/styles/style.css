@@ -5,3 +5,11 @@
 .heading-1 {
   @apply text-2xl font-bold my-2 select-none;
 }
+
+.heading-2 {
+  @apply text-xl font-bold my-1;
+}
+
+.heading-3 {
+  @apply text-lg font-bold my-1;
+}

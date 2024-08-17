@@ -1,14 +1,17 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-  <h1>
-    {{ resume.email }}
-
+  <section class="flex items-center gap-2 px-1">
+    <h2 class="heading-2">{{ resume.name }}</h2>
     {% if user.is_authenticated %}
       {% include "resumes/_bookmark.html" with resume=resume bookmarked=bookmarked only %}
     {% endif %}
-  </h1>
-  <h2>{{ resume.name }}</h2>
+  </section>
+  <h3 class="px-1">{{ resume.introduce }}</h3>
+
+  <article class="flex flex-col gap-2 p-6 my-3 text-lg leading-7 bg-white shadow">
+    {{ resume.profile|linebreaks }}
+  </article>
 
   <form method="POST"
         hx-target="#comments"

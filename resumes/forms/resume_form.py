@@ -15,7 +15,7 @@ class ResumeForm(ModelForm):
             "profile": Textarea(
                 attrs={"rows": 5, "class": "textarea textarea-bordered"}
             ),
-            "online": CheckboxInput(attrs={"class": "checkbox checkbox-lg"}),
+            "online": CheckboxInput(attrs={"class": "toggle"}),
         }
         labels = {
             "name": "姓名",

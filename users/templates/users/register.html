@@ -1,34 +1,40 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-  <h1 class="heading-1">註冊</h1>
+  <h1 class="heading-1">會員註冊</h1>
 
-  <form action="{% url 'users:index' %}"
-        autocomplete="off"
-        method="POST">
-    {% csrf_token %}
+  <section class="max-w-sm bg-white shadow-sm card">
+    <form action="{% url 'users:index' %}"
+          autocomplete="off"
+          class="card-body"
+          method="POST">
+      {% csrf_token %}
 
-    <div>
-      <label class="label">帳號</label>
-      <input type="text" class="input input-bordered" name="username" />
-    </div>
+      <div>
+        <label class="label">帳號</label>
+        <input type="text" class="w-full input input-bordered" name="username" />
+      </div>
 
-    <div>
-      <label class="label">密碼</label>
-      <input type="password" class="input input-bordered" name="password1" />
-    </div>
+      <div>
+        <label class="label">密碼</label>
+        <input type="password" class="w-full input input-bordered" name="password1" />
+      </div>
 
-    <div>
-      <label class="label">密碼確認</label>
-      <input type="password" class="input input-bordered" name="password2" />
-    </div>
+      <div>
+        <label class="label">密碼確認</label>
+        <input type="password" class="w-full input input-bordered" name="password2" />
+      </div>
 
-    <button class="mt-4 btn btn-primary">
-      註冊
-    </button>
-  </form>
+      <div>
+        <button class="mt-4 btn btn-primary">註冊</button>
+      </div>
 
-  <div class="divider"></div>
-  已經有帳號了？<a class="link" href="{% url 'users:sign_in' %}">登入</a>
+      <div class="divider"></div>
+      <div>
+        已經有帳號了？<a class="link" href="{% url 'users:sign_in' %}">登入</a>
+      </div>
+    </form>
+  </section>
 
+</div>
 {% endblock %}

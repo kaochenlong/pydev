@@ -8,16 +8,26 @@
     <a href="{% url 'resumes:new' %}" class="btn btn-primary">新增</a>
   {% endif %}
 
-  <ul>
+  <section class="grid gap-2 my-2">
   {% for resume in resumes %}
-    <li>
-    <a href="{% url 'resumes:show' resume.id %}">
-      {{ resume.name }} {{ resume.email }}
-    </a>
-    {% if resume.user == request.user %}
-      <a href="{% url 'resumes:edit' resume.id %}" class="btn">編輯</a>
-    {% endif %}
-    </li>
+    <div class="bg-white shadow card">
+      <div class="card-body">
+      <h3 class="card-title">
+        <a href="{% url 'resumes:show' resume.id %}">{{ resume.name }}</a>
+      </h3>
+      <p>
+        {{ resume.introduce }}
+      </p>
+      <p>
+        {{ resume.profile|truncatechars:150|linebreaks }}
+      </p>
+      <footer class="card-actions">
+        {% if resume.user == request.user %}
+          <a href="{% url 'resumes:edit' resume.id %}" class="btn">編輯</a>
+        {% endif %}
+      </footer>
+      </div>
+    </div>
   {% endfor %}
-  </ul>
+  </section>
 {% endblock %}
