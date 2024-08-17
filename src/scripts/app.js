@@ -1,3 +1,3 @@
 import "htmx.org"
-import "./components/braintree.js"
+import "./components"
 import "./fontawesome.js"

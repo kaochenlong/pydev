@@ -16,13 +16,16 @@
   <form method="POST"
         hx-target="#comments"
         hx-swap="afterbegin"
+        x-data="resume_comment"
+        hx-confirm="確認送出留言？"
+        hx-on::after-request="this.reset()"
         hx-post="{% url 'resumes:comment' resume.id %}">
     {% csrf_token %}
-    <section class="flex flex-col w-1/3 gap-2">
-      <textarea name="content" rows="5" class="textarea textarea-bordered" placeholder="請填寫留言"></textarea>
+    <section class="flex flex-col gap-2">
+      <textarea name="content" x-model="content" class="textarea textarea-bordered" placeholder="請填寫留言"></textarea>
       <div>
         {% if user.is_authenticated %}
-          <button class="btn btn-primary">新增留言</button>
+          <button class="btn btn-primary btn-sm" :disabled="!canSubmit">新增留言</button>
         {% else %}
           <button disabled class="btn btn-primary">請先登入</button>
         {% endif %}
