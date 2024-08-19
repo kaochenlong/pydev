@@ -13,7 +13,6 @@ def index(req):
     if req.method == "POST":
         nonce = req.POST["nonce"]
 
-        # Nonce => Number used once
         result = gateway().transaction.sale(
             {
                 "amount": 10,
