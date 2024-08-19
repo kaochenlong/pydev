@@ -46,7 +46,8 @@ def show(req, id):
             )
 
     resume = get_object_or_404(Resume, pk=id)
-    comments = resume.comment_set.order_by("-id")
+    # comments = resume.comment_set.order_by("-id")
+    comments = resume.comment_set.prefetch_related("user").order_by("-id")
 
     return render(
         req,
