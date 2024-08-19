@@ -21,7 +21,7 @@ Alpine.data("braintree_drop_in", () => ({
                   if (nonce) {
                     this.createNonceField(nonce)
 
-                    // form.submit()
+                    form.submit()
                   }
                 })
                 .catch((err) => {

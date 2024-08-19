@@ -3,7 +3,10 @@
 {% block content %}
   <h1 class="heading-1">VIP 方案</h1>
 
-  <form method="POST" action="/" autocomplete="off">
+  <form method="POST"
+        action="{% url 'payments:index' %}"
+        autocomplete="off">
+    {% csrf_token %}
     <div x-data="braintree_drop_in" data-token="{{ token }}"></div>
     <button class="btn btn-primary">刷卡</button>
   </form>
