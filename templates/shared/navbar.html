@@ -1,6 +1,11 @@
 <nav class="shadow navbar bg-base-100">
   <div class="flex-1 gap-2">
-    <a href="{% url 'pages:root' %}" class="text-xl btn btn-ghost">PyDev</a>
+    <a href="{% url 'pages:root' %}" class="text-xl btn btn-ghost">
+      PyDev
+      {% if perms.resumes.delete_resume %}
+        <i class="text-yellow-400 fa-solid fa-crown"></i>
+      {% endif %}
+    </a>
     <ul class="px-1 menu menu-horizontal">
       <li><a href="{% url 'resumes:index' %}">Developers</a></li>
       <li><a href="{% url 'pages:about' %}">關於</a></li>

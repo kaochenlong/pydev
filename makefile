@@ -25,3 +25,7 @@ lint:
 .PHONY: commit
 commit:
 	poetry run cz commit
+
+.PHONY: init_db
+init_db:
+	poetry run python manage.py init_db

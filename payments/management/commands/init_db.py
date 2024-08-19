@@ -6,17 +6,15 @@ class Command(BaseCommand):
     help = "Initialize Database"
 
     def handle(self, *args, **options):
-        # 建立 VIP 權限
-        perm_delete_resume = Permission.objects.get(codename="delete_resume")
-        perm_change_comment = Permission.objects.get(codename="change_comment")
-
         # 建立 VIP Group
-        group, created = Group.objects.get_or_create(name="VIP")
+        group, _ = Group.objects.get_or_create(name="VIP")
 
-        if created:
-            group.permissions.add(
-                perm_change_comment,
-                perm_delete_resume,
-            )
+        # 建立 VIP 權限
+        perm_list = [
+            "delete_resume",
+            "change_comment",
+        ]
+        permissions = Permission.objects.filter(codename__in=perm_list)
+        group.permissions.set(permissions)
 
         print("init databased done!!")

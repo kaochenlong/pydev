@@ -4,11 +4,14 @@
     {{ comment.created_at|date:'h:i d/m/Y' }}
   </time>
   {% if comment.user == request.user %}
+    {% if perms.comments.delete_comment %}
+      <a href="#" class="btn btn-xs">編輯</a>
+    {% endif %}
     <button hx-delete="{% url 'resumes:delete_comment' comment.id %}"
             hx-confirm="確認刪除？"
             hx-target="closest .chat-bubble"
             hx-swap="outerHTML"
-            class="ml-4 btn btn-xs">
+            class="btn btn-xs">
       刪除
     </button>
   {% endif %}

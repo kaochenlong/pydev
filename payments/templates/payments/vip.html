@@ -9,7 +9,12 @@
       alt="Shoes" />
   </figure>
   <div class="card-body">
-    <h2 class="card-title">100 方案</h2>
+    <h2 class="card-title">
+      100 方案
+      {% if perms.resumes.delete_resume %}
+        <span class="text-xs">已購買</span>
+      {% endif %}
+    </h2>
     <p>If a dog chews shoes whose shoes does he choose?</p>
     <div class="justify-end card-actions">
       <a href="{% url 'payments:new' %}" class="btn btn-primary">Buy Now</a>
