@@ -2,7 +2,11 @@
 
 {% block content %}
   <h1 class="heading-1">VIP 方案</h1>
-  <div x-data="braintree_drop_in" data-token="{{ token }}"></div>
+
+  <form method="POST" action="/" autocomplete="off">
+    <div x-data="braintree_drop_in" data-token="{{ token }}"></div>
+    <button class="btn btn-primary">刷卡</button>
+  </form>
 </div>
 
 {% endblock %}
