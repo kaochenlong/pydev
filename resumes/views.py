@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -25,7 +26,9 @@ def index(request):
 
     keyword = request.GET.get("keyword", "")
     if keyword:
-        resumes = resumes.filter(profile__contains=keyword)
+        resumes = resumes.filter(
+            Q(profile__contains=keyword) | Q(introduce__contains=keyword)
+        )
 
     return render(
         request,
