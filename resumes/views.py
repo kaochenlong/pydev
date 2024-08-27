@@ -7,108 +7,119 @@ from .forms import ResumeForm
 from .models import Comment, Resume
 
 
-def index(req):
-    if req.method == "POST":
-        form = ResumeForm(req.POST)
+def index(request):
+    if request.method == "POST":
+        form = ResumeForm(request.POST)
 
         if form.is_valid():
             resume = form.save(commit=False)
-            resume.user = req.user
+            resume.user = request.user
             resume.save()
 
-            messages.success(req, "新增成功")
+            messages.success(request, "新增成功")
             return redirect("resumes:index")
         else:
-            return render(req, "resumes/new.html", {"form": form})
+            return render(request, "resumes/new.html", {"form": form})
 
     resumes = Resume.objects.order_by("-id")
-    return render(req, "resumes/index.html", {"resumes": resumes})
+
+    keyword = request.GET.get("keyword", "")
+    if keyword:
+        resumes = resumes.filter(profile__contains=keyword)
+
+    return render(
+        request,
+        "resumes/index.html",
+        {
+            "resumes": resumes,
+            "keyword": keyword,
+        },
+    )
 
 
-def show(req, id):
-    if req.method == "POST":
-        resume = get_object_or_404(Resume, pk=id, user=req.user)
-        form = ResumeForm(req.POST, instance=resume)
+def show(request, id):
+    if request.method == "POST":
+        resume = get_object_or_404(Resume, pk=id, user=request.user)
+        form = ResumeForm(request.POST, instance=resume)
 
         if form.is_valid():
             form.save()
-            messages.success(req, "更新成功")
+            messages.success(request, "更新成功")
             return redirect("resumes:show", resume.id)
         else:
             return render(
-                req,
+                request,
                 "resumes/edit.html",
                 {
                     "form": form,
                     "resume": resume,
-                    "bookmarked": resume.bookmarked_by(req.user),
+                    "bookmarked": resume.bookmarked_by(request.user),
                 },
             )
 
     resume = get_object_or_404(Resume, pk=id)
-    # comments = resume.comment_set.order_by("-id")
     comments = resume.comment_set.prefetch_related("user").order_by("-id")
 
     return render(
-        req,
+        request,
         "resumes/show.html",
         {
             "resume": resume,
             "comments": comments,
-            "bookmarked": resume.bookmarked_by(req.user),
+            "bookmarked": resume.bookmarked_by(request.user),
         },
     )
 
 
 @login_required
-def new(req):
+def new(request):
     form = ResumeForm()
-    return render(req, "resumes/new.html", {"form": form})
+    return render(request, "resumes/new.html", {"form": form})
 
 
 @login_required
-def edit(req, id):
-    resume = get_object_or_404(Resume, pk=id, user=req.user)
+def edit(request, id):
+    resume = get_object_or_404(Resume, pk=id, user=request.user)
     form = ResumeForm(instance=resume)
     return render(
-        req,
+        request,
         "resumes/edit.html",
         {"form": form, "resume": resume},
     )
 
 
 @login_required
-def comment(req, id):
-    if req.method == "POST":
+def comment(request, id):
+    if request.method == "POST":
         resume = get_object_or_404(Resume, pk=id)
         comment = resume.comment_set.create(
-            content=req.POST["content"],
-            user=req.user,
+            content=request.POST["content"],
+            user=request.user,
         )
         return render(
-            req,
+            request,
             "resumes/_comment.html",
             {"comment": comment},
         )
 
 
 @login_required
-def delete_comment(req, id):
-    if req.method == "DELETE":
-        comment = get_object_or_404(Comment, id=id, user=req.user)
+def delete_comment(request, id):
+    if request.method == "DELETE":
+        comment = get_object_or_404(Comment, id=id, user=request.user)
         comment.delete()
         return HttpResponse("")
 
 
 @login_required
-def bookmark(req, id):
-    if req.method == "POST":
+def bookmark(request, id):
+    if request.method == "POST":
         resume = get_object_or_404(Resume, pk=id)
 
-        if resume.bookmarked_by(req.user):
-            resume.bookmark.remove(req.user)
+        if resume.bookmarked_by(request.user):
+            resume.bookmark.remove(request.user)
             return render(
-                req,
+                request,
                 "resumes/_bookmark.html",
                 {
                     "resume": resume,
@@ -116,9 +127,9 @@ def bookmark(req, id):
                 },
             )
         else:
-            resume.bookmark.add(req.user)
+            resume.bookmark.add(request.user)
             return render(
-                req,
+                request,
                 "resumes/_bookmark.html",
                 {
                     "resume": resume,
