@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "resumes",
     "users",
     "payments",
+    "taggit",
 ]
 
 if is_dev():

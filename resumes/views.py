@@ -1,3 +1,5 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -49,6 +51,11 @@ def show(request, id):
 
         if form.is_valid():
             form.save()
+
+            tags = request.POST.get("tags")
+            if tags:
+                tags = [tag["value"] for tag in json.loads(tags)]
+
             messages.success(request, "更新成功")
             return redirect("resumes:show", resume.id)
         else:
@@ -72,6 +79,7 @@ def show(request, id):
             "resume": resume,
             "comments": comments,
             "bookmarked": resume.bookmarked_by(request.user),
+            "tags": resume.tags.all(),
         },
     )
 

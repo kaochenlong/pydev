@@ -9,6 +9,12 @@
   </section>
   <h3 class="px-1">{{ resume.introduce }}</h3>
 
+  <section>
+    {% for tag in tags %}
+      <span class="select-none badge badge-primary">#{{ tag.name }}</span>
+    {% endfor %}
+  </section>
+
   <article class="flex flex-col gap-2 p-6 my-3 text-lg leading-7 bg-white shadow">
     {{ resume.profile|linebreaks }}
   </article>

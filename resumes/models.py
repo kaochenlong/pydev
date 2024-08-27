@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from taggit.managers import TaggableManager
 
 from lib.models.soft_delete import SoftDeleteable, SoftDeleteManager
 
@@ -12,6 +13,8 @@ class Resume(models.Model):
     online = models.BooleanField(default=False)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     bookmark = models.ManyToManyField(User, related_name="bookmarks")
+
+    tags = TaggableManager()
 
     def __str__(self):
         return f"{self.name} ({self.email})"
