@@ -27,7 +27,9 @@ def index(request):
     keyword = request.GET.get("keyword", "")
     if keyword:
         resumes = resumes.filter(
-            Q(profile__contains=keyword) | Q(introduce__contains=keyword)
+            Q(profile__contains=keyword)
+            | Q(introduce__contains=keyword)
+            | Q(user__username__contains=keyword)
         )
 
     return render(
