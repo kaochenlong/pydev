@@ -1,7 +1,7 @@
 from django.urls import path
 
-from payments import views as payment_views
-from resumes import views as resume_views
+from apps.payments import views as payment_views
+from apps.resumes import views as resume_views
 
 from . import views
 

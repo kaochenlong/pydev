@@ -30,10 +30,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "pages",
-    "resumes",
-    "users",
-    "payments",
+    "apps.pages",
+    "apps.resumes",
+    "apps.users",
+    "apps.payments",
     "taggit",
 ]
 
@@ -56,7 +56,7 @@ MIDDLEWARE = [
 if is_dev():
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
-ROOT_URLCONF = "core.routes"
+ROOT_URLCONF = "config.routes"
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "core.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database

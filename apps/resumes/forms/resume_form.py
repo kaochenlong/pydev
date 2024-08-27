@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.forms.widgets import CheckboxInput, EmailInput, Textarea, TextInput
 
-from resumes.models import Resume
+from apps.resumes.models import Resume
 
 
 class ResumeForm(ModelForm):
