@@ -24,7 +24,7 @@ def index(request):
         else:
             return render(request, "resumes/new.html", {"form": form})
 
-    resumes = Resume.objects.order_by("-id")
+    resumes = Resume.objects.prefetch_related("user", "tags").order_by("-id")
 
     keyword = request.GET.get("keyword", "")
     if keyword:
@@ -50,12 +50,14 @@ def show(request, id):
         form = ResumeForm(request.POST, instance=resume)
 
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
 
             tags = request.POST.get("tags")
             if tags:
                 tags = [tag["value"] for tag in json.loads(tags)]
-                resume.tags.add(*tags)
+                obj.tags.set(tags)
+
+            form.save_m2m()
 
             messages.success(request, "更新成功")
             return redirect("resumes:show", resume.id)
@@ -80,7 +82,6 @@ def show(request, id):
             "resume": resume,
             "comments": comments,
             "bookmarked": resume.bookmarked_by(request.user),
-            "tags": resume.tags.all(),
         },
     )
 

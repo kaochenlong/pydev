@@ -18,28 +18,7 @@
 
   <section class="grid gap-2 my-2">
   {% for resume in resumes %}
-    <div class="bg-white shadow card">
-      <div class="card-body">
-        <h3 class="card-title">
-          <a href="{% url 'resumes:show' resume.id %}">{{ resume.name }}</a>
-        </h3>
-        <p>
-          <a href="{% url 'resumes:show' resume.id %}">
-            {{ resume.introduce }}
-          </a>
-        </p>
-        <p>
-          <a href="{% url 'resumes:show' resume.id %}">
-            {{ resume.profile|truncatechars:150|linebreaks }}
-          </a>
-        </p>
-      <footer class="card-actions">
-        {% if resume.user == request.user %}
-          <a href="{% url 'resumes:edit' resume.id %}" class="btn">編輯</a>
-        {% endif %}
-      </footer>
-      </div>
-    </div>
+    {% include 'resumes/_resume.html' with resume=resume %}
   {% endfor %}
   </section>
 {% endblock %}

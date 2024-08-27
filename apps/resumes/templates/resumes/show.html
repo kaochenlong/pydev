@@ -10,7 +10,7 @@
   <h3 class="px-1">{{ resume.introduce }}</h3>
 
   <section>
-    {% for tag in tags %}
+    {% for tag in resume.tags.all %}
       <span class="select-none badge badge-primary">#{{ tag.name }}</span>
     {% endfor %}
   </section>
