@@ -55,6 +55,7 @@ def show(request, id):
             tags = request.POST.get("tags")
             if tags:
                 tags = [tag["value"] for tag in json.loads(tags)]
+                resume.tags.add(*tags)
 
             messages.success(request, "更新成功")
             return redirect("resumes:show", resume.id)
